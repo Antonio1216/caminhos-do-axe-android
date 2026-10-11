@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#241631">
+  <meta name="description" content="Consulta educativa dos 16 Odus por numerologia da data de nascimento, com associações culturais e anotações pessoais.">
+  <meta name="color-scheme" content="light">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="dados.js" defer></script>
+  <script src="app.js" defer></script>
+  <title>Caminhos do Axé | Consulta dos Odus</title>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir ao conteúdo</a>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Caminhos do Axé, voltar ao início">
+        <span class="brand-mark" aria-hidden="true"><span class="mark-core">✧</span></span>
+        <span class="brand-name">Caminhos <em>do Axé</em><small>Saberes e caminhos</small></span>
+      </a>
+      <nav class="top-nav" aria-label="Navegação principal">
+        <a href="#consulta">Consultar</a>
+        <a href="#catalogo">Os 16 Odus</a>
+        <a href="#historico">Histórico</a>
+      </nav>
+      <button type="button" id="installButton" class="install-button" hidden>Instalar app <span aria-hidden="true">↗</span></button>
+    </header>
+
+    <main id="conteudo">
+      <section id="inicio" class="hero" aria-labelledby="titulo-principal">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> CONHECIMENTO & TRADIÇÃO</span>
+          <h1 id="titulo-principal">Descubra um caminho de <span>conhecimento.</span></h1>
+          <p>Explore o <strong>Odu numerológico</strong> pela data de nascimento, conheça os Orixás associados em uma tabela de referência e organize suas anotações espirituais.</p>
+          <a class="hero-cta" href="#consulta">Iniciar consulta <span aria-hidden="true">→</span></a>
+          <p class="hero-disclaimer">Consulta educativa, não ritual. Não identifica Orixá de cabeça nem Exu pessoal.</p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="halo outer-halo"></div>
+          <div class="halo inner-halo"></div>
+          <div class="art-diamond diamond-a"></div>
+          <div class="art-diamond diamond-b"></div>
+          <div class="art-center"><span>16</span><small>ODUS</small></div>
+          <span class="orbit-star star-a">✦</span><span class="orbit-star star-b">✧</span><span class="orbit-star star-c">✦</span>
+        </div>
+      </section>
+
+      <section id="consulta" class="consultation-section" aria-labelledby="consulta-titulo">
+        <div class="section-heading">
+          <div><span class="section-kicker">01 / SUA CONSULTA</span><h2 id="consulta-titulo">Consulte pela data de nascimento</h2></div>
+          <p>Um cálculo simples, com o passo a passo visível.</p>
+        </div>
+        <div class="consultation-grid">
+          <form id="consultaForm" class="surface form-card" novalidate>
+            <div class="form-intro"><span class="form-symbol" aria-hidden="true">✳</span><div><h3>Dados da consulta</h3><p>Preencha para começar. O nome é opcional.</p></div></div>
+            <div class="field"><label for="nome">Nome <span class="optional">(opcional)</span></label><input id="nome" name="nome" type="text" autocomplete="name" maxlength="80" placeholder="Como deseja identificar esta consulta"></div>
+            <div class="field"><label for="nascimento">Data de nascimento <span class="required" aria-hidden="true">*</span></label><input id="nascimento" name="nascimento" type="date" required aria-describedby="data-ajuda"><small id="data-ajuda">Usaremos dia, mês e ano para somar os algarismos.</small></div>
+            <div id="formError" class="form-error" role="alert" hidden></div>
+            <div class="form-actions"><button type="submit" class="primary-button">Calcular meu Odu <span aria-hidden="true">→</span></button><button type="reset" class="secondary-button">Limpar</button></div>
+            <p class="privacy-hint"><span aria-hidden="true">♢</span> Os dados só são guardados neste aparelho quando você escolhe salvar.</p>
+          </form>
+          <aside class="surface guide-card" aria-label="O que você encontrará">
+            <div class="guide-top"><span class="section-kicker">GUIA DE LEITURA</span><span class="guide-icon" aria-hidden="true">✺</span></div>
+            <h3>Três conhecimentos,<br><em>com respeito às tradições.</em></h3>
+            <div class="guide-steps">
+              <div class="guide-step"><span class="guide-number">01</span><div><strong>Odu numerológico</strong><p>Resultado da soma dos dígitos da data, de 1 a 16.</p></div></div>
+              <div class="guide-step"><span class="guide-number">02</span><div><strong>Orixás associados</strong><p>Nomes vinculados ao Odu em uma tabela popular, não seu Orixá de cabeça.</p></div></div>
+              <div class="guide-step"><span class="guide-number">03</span><div><strong>Exu pessoal</strong><p>Não é calculável pela data. Você pode registrar uma informação obtida na sua tradição.</p></div></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="resultado" class="result-section" aria-labelledby="resultado-titulo" hidden>
+        <div class="section-heading result-heading"><div><span class="section-kicker">02 / SUA LEITURA</span><h2 id="resultado-titulo">Resultado da consulta</h2></div><span id="result-date" class="result-date"></span></div>
+        <div class="result-cards">
+          <article class="result-card result-card-odu"><span class="result-label">ODU NUMEROLÓGICO</span><div class="odu-line"><span id="oduNumber" class="odu-number">—</span><span aria-hidden="true" class="odu-ornament">✧</span></div><h3 id="oduName">—</h3><p id="oduTheme"></p></article>
+          <article class="result-card result-card-orixa"><span class="result-label">ORIXÁS NA TABELA</span><span class="result-icon" aria-hidden="true">✺</span><h3 id="orixaNames">—</h3><p>Associações simbólicas desta referência numerológica; não indicam seu Orixá de cabeça.</p></article>
+          <article class="result-card result-card-exu"><span class="result-label">EXU PESSOAL</span><span class="result-icon" aria-hidden="true">◇</span><h3 id="exuName">Não identificado pela data</h3><p id="exuRelation">A identificação depende da tradição e da orientação religiosa.</p></article>
+        </div>
+        <div class="result-lower">
+          <div class="surface calc-card"><span class="section-kicker">COMO CHEGAMOS AO RESULTADO</span><h3>O cálculo, sem mistério</h3><p id="calcDescription" class="calc-description"></p><div id="calcSteps" class="calc-steps"></div><p class="calc-note">É uma convenção numerológica de caráter educativo, não um jogo de búzios ou leitura de Ifá.</p><div class="share-actions"><button type="button" class="secondary-button" id="copyButton">Copiar resultado</button><button type="button" class="secondary-button" id="printButton">Imprimir / salvar PDF</button></div></div>
+          <form class="surface notes-card" id="notesForm"><span class="section-kicker">REGISTRO PESSOAL</span><h3>Informações da sua tradição</h3><p class="notes-intro">Se você já recebeu orientação religiosa, pode anotá-la aqui. Nada será presumido pelo aplicativo.</p><div class="field"><label for="orixaPessoal">Orixá de cabeça informado <span class="optional">(opcional)</span></label><input id="orixaPessoal" maxlength="90" type="text" placeholder="Ex.: conforme consulta na sua casa"></div><div class="field"><label for="exuPessoal">Exu informado <span class="optional">(opcional)</span></label><input id="exuPessoal" maxlength="90" type="text" placeholder="Ex.: conforme sua tradição"></div><div class="field"><label for="observacoes">Minhas observações <span class="optional">(opcional)</span></label><textarea id="observacoes" rows="3" maxlength="800" placeholder="Anotações sobre a consulta..."></textarea></div><button type="submit" class="primary-button save-button">Salvar consulta no aparelho <span aria-hidden="true">↓</span></button><p id="saveMessage" class="save-message" role="status" aria-live="polite"></p></form>
+        </div>
+      </section>
+
+      <section id="catalogo" class="catalog-section" aria-labelledby="catalog-title"><div class="section-heading"><div><span class="section-kicker">03 / BIBLIOTECA</span><h2 id="catalog-title">Conheça os 16 Odus</h2></div><p>Uma referência comparativa: nomes e correspondências mudam entre tradições.</p></div><div class="catalog-tools"><label for="catalogSearch" class="visually-hidden">Buscar Odu ou Orixá</label><input id="catalogSearch" type="search" placeholder="Buscar Odu ou Orixá..." autocomplete="off"><span id="catalogCount" class="catalog-count" role="status"></span></div><div id="catalogList" class="catalog-grid"></div></section>
+
+      <section id="historico" class="history-section" aria-labelledby="historico-titulo"><div class="section-heading"><div><span class="section-kicker">04 / NO SEU DISPOSITIVO</span><h2 id="historico-titulo">Consultas salvas</h2></div><button type="button" id="clearHistoryButton" class="text-button" hidden>Apagar todo o histórico</button></div><div id="historyEmpty" class="history-empty surface"><span class="empty-icon" aria-hidden="true">⌁</span><p>Nenhuma consulta salva até agora.</p><small>Calcule um Odu e escolha “Salvar consulta no aparelho”.</small></div><div id="historyList" class="history-list"></div></section>
+
+      <section class="info-section" aria-labelledby="info-titulo"><div class="info-accent" aria-hidden="true">✧</div><div><span class="section-kicker">IMPORTANTE SABER</span><h2 id="info-titulo">Cálculo não substitui fundamento.</h2><p>Não existe método universalmente aceito para identificar Orixá de cabeça ou Exu pessoal a partir da data de nascimento. Em diferentes tradições, esse conhecimento envolve orientação religiosa, vivência na casa e, quando aplicável, consulta ritual. <strong>Exu Orixá</strong> e os <strong>Exus enquanto entidades da Umbanda</strong> também não são a mesma categoria.</p><details><summary>Fontes e método usados no aplicativo</summary><p>Este aplicativo usa a soma simples dos algarismos da data de nascimento com redução para 1 a 16, conforme uma divulgação da numerologia dos Orixás. O catálogo de Odus adota uma das ordenações brasileiras e as associações são apenas um exemplo de tabela publicada. Não representa consenso entre casas ou nações.</p><ul><li><a href="https://www.astrocentro.com.br/blog/numerologia/numerologia-dos-orixas/" target="_blank" rel="noopener noreferrer">Astrocentro: método numerológico e tabela de associações ↗</a></li><li><a href="https://orisabrasil.com.br/Loja/ordem-e-nomes-dos-odu-eerindilogun-em-diferentes-partes-da-terra-yoruba/" target="_blank" rel="noopener noreferrer">Orisa Brasil: diversidade de ordens dos Odus ↗</a></li></ul></details></div></section>
+    </main>
+    <footer class="site-footer"><span class="footer-brand">✧ Caminhos do Axé</span><span>Feito para estudo, com respeito às tradições afro-brasileiras.</span><span>Funciona offline após a instalação.</span></footer>
+  </div>
+</body>
+</html>
