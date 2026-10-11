@@ -20,10 +20,28 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - name: Instalar plataformas do Android SDK
+      - name: Preparar Android SDK oficial
+        shell: bash
         run: |
-          sdkmanager --version
-          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          set -e
+          SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-$RUNNER_TEMP/android-sdk}}"
+          mkdir -p "$SDK_ROOT/cmdline-tools"
+          MANAGER="$(find "$SDK_ROOT" -path '*/bin/sdkmanager' -type f -print -quit 2>/dev/null || true)"
+          if [ -z "$MANAGER" ]; then
+            curl -fL --retry 3 --connect-timeout 30 \
+              https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip \
+              -o "$RUNNER_TEMP/android-tools.zip"
+            echo "4e4c464f145a7512b57d088ac6c278c03c9eea610886b35a5e0804e74eedf583  $RUNNER_TEMP/android-tools.zip" | sha256sum --check
+            mkdir -p "$RUNNER_TEMP/android-tools"
+            unzip -q "$RUNNER_TEMP/android-tools.zip" -d "$RUNNER_TEMP/android-tools"
+            mv "$RUNNER_TEMP/android-tools/cmdline-tools" "$SDK_ROOT/cmdline-tools/latest"
+            MANAGER="$SDK_ROOT/cmdline-tools/latest/bin/sdkmanager"
+          fi
+          echo "ANDROID_HOME=$SDK_ROOT" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$SDK_ROOT" >> "$GITHUB_ENV"
+          yes | "$MANAGER" --sdk_root="$SDK_ROOT" --licenses > /dev/null || true
+          "$MANAGER" --sdk_root="$SDK_ROOT" "platforms;android-35" "build-tools;35.0.0"
+
       - name: Preparar Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
